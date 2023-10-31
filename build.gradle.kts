@@ -14,6 +14,8 @@ dependencies {
 
     implementation("io.ktor:ktor-server-core-jvm:2.3.5")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.5")
+    implementation("io.insert-koin:koin-core:3.5.0")
+    implementation("io.insert-koin:koin-ktor:3.5.0")
 }
 
 tasks.test {
