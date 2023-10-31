@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    implementation("io.ktor:ktor-server-core-jvm:2.3.5")
+    implementation("io.ktor:ktor-server-netty-jvm:2.3.5")
 }
 
 tasks.test {
