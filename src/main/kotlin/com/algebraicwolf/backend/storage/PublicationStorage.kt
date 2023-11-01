@@ -5,11 +5,13 @@ import com.algebraicwolf.backend.model.Publication
 interface PublicationStorage {
     fun getAll(): Collection<Publication>
 
-    fun getById(id: Long): Result<Publication>
+    fun getPage(perPage: Int, page: Int): Collection<Publication>
 
-    fun publish(pubText: String): Result<Publication>
+    fun getById(id: Long): Publication?
 
-    fun delete(id: Long): Result<Unit>
+    fun publish(pubText: String): Publication?
 
-    fun update(id: Long, newText: String): Result<Unit>
+    fun delete(id: Long): Boolean
+
+    fun update(id: Long, newText: String): Boolean
 }
