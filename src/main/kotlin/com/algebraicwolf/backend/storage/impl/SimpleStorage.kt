@@ -41,13 +41,11 @@ class SimpleStorage : PublicationStorage {
     override fun update(id: Long, newText: String): Boolean {
         val pub = publications[id]
 
-        if (pub != null) {
-            val newPub = pub.copy(text = newText, modifiedAt = Instant.now())
-            publications[id] = newPub
-
-            return true
+        return if (pub != null) {
+            publications[id] = pub.copy(text = newText, modifiedAt = Instant.now())
+            true
         } else {
-            return false
+            false
         }
     }
 }
