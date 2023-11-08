@@ -5,8 +5,7 @@ import com.algebraicwolf.backend.api.model.PublicationRequest
 import com.algebraicwolf.backend.api.model.PublicationsResp
 import com.algebraicwolf.backend.storage.PublicationStorage
 import io.ktor.http.*
-import io.ktor.server.application.Application
-import io.ktor.server.application.call
+import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.get
@@ -21,6 +20,10 @@ val incorrectFormatErr = "Incorrect format, expected a number"
 val pubNotFoundErr = "Publication not found"
 val tooLongErr = "Publication is too long. It should be no more than 500 symbols"
 
+fun ApplicationCall.getPathParameter(name: String): String? {
+    return this.parameters[name]
+}
+
 fun Application.publicationApi() {
     routing {
 
@@ -33,7 +36,7 @@ fun Application.publicationApi() {
         }
 
         get("/publications/{page}") {
-            val page = call.parameters["page"]?.toInt()
+            val page = call.getPathParameter("page")?.toInt()
 
             if (page != null) {
                 val pubs = storage.getPage(10, page - 1)
@@ -55,7 +58,7 @@ fun Application.publicationApi() {
         }
 
         get("/publication/{id}/get") {
-            val id = call.parameters["id"]?.toLong()
+            val id = call.getPathParameter("id")?.toLong()
 
             if (id != null) {
                 val pub = storage.getById(id)
@@ -71,7 +74,7 @@ fun Application.publicationApi() {
         }
 
         patch("/publication/{id}/update") {
-            val id = call.parameters["id"]?.toLong()
+            val id = call.getPathParameter("id")?.toLong()
             val request = call.receive<PublicationRequest>()
 
             if (request.pubText.length > 500) {
@@ -89,7 +92,7 @@ fun Application.publicationApi() {
         }
 
         delete("/publication/{id}/delete") {
-            val id = call.parameters["id"]?.toLong()
+            val id = call.getPathParameter("id")?.toLong()
 
             if (id != null) {
                 val res = storage.delete(id)

@@ -12,14 +12,17 @@ repositories {
 }
 
 dependencies {
+    val ktorVersion = "2.3.5"
+    val koinVersion = "3.5.0"
+
     testImplementation(kotlin("test"))
 
-    implementation("io.ktor:ktor-server-core-jvm:2.3.5")
-    implementation("io.ktor:ktor-server-netty-jvm:2.3.5")
-    implementation("io.ktor:ktor-server-content-negotiation:2.3.5")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
-    implementation("io.insert-koin:koin-core:3.5.0")
-    implementation("io.insert-koin:koin-ktor:3.5.0")
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-ktor:$koinVersion")
 }
 
 tasks.test {
