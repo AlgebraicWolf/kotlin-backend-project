@@ -25,13 +25,13 @@ class SimpleStorage : PublicationStorage {
         return publications.remove(id) != null
     }
 
-    override fun publish(pubText: String): Publication? {
+    override fun publish(pubText: String, author: String): Publication? {
         if (pubText.length > 500) {
             return null
         }
 
         val time = Instant.now()
-        val newPub = Publication(nextId, pubText, time, time)
+        val newPub = Publication(nextId, pubText, time, time, author)
         publications[nextId] = newPub
         nextId += 1
 

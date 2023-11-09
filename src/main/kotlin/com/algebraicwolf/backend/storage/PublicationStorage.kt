@@ -9,7 +9,7 @@ interface PublicationStorage {
 
     fun getById(id: Long): Publication?
 
-    fun publish(pubText: String): Publication?
+    fun publish(pubText: String, author: String): Publication?
 
     fun delete(id: Long): Boolean
 
