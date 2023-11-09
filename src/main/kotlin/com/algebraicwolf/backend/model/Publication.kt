@@ -11,5 +11,6 @@ data class Publication(
     @Serializable(InstantSerializer::class)
     val createdAt: Instant,
     @Serializable(InstantSerializer::class)
-    val modifiedAt: Instant
+    val modifiedAt: Instant,
+    val author: String
 )
