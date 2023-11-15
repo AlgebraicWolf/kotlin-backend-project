@@ -5,6 +5,7 @@ import com.algebraicwolf.backend.api.model.PublicationRequest
 import com.algebraicwolf.backend.api.model.PublicationsResp
 import com.algebraicwolf.backend.plugins.Authorize
 import com.algebraicwolf.backend.storage.PublicationStorage
+import com.algebraicwolf.backend.extensions.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -18,15 +19,6 @@ import java.lang.Exception
 val incorrectFormatErr = "Incorrect format, expected a number"
 val pubNotFoundErr = "Publication not found"
 val tooLongErr = "Publication is too long. It should be no more than 500 symbols"
-
-fun ApplicationCall.getPathParameter(name: String): String? {
-    return this.parameters[name]
-}
-
-fun ApplicationCall.getCurrentUser(): String {
-    val principal = this.principal<JWTPrincipal>()
-    return principal!!.payload.getClaim("username").asString()
-}
 
 fun Application.publicationApi() {
     routing {
