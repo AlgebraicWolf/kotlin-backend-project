@@ -17,16 +17,12 @@ fun Application.authApi() {
     routing {
         val storage by inject<UserStorage>()
         post("/register") {
-            try {
-                val user = call.receive<RegistrationRequest>()
+            val user = call.receive<RegistrationRequest>()
 
-                if (storage.register(user.username, user.password, user.name)) {
-                    call.respond(HttpStatusCode.OK)
-                } else {
-                    call.respond(HttpStatusCode.Forbidden, "User with the same username already exists")
-                }
-            } catch (e: Exception) {
-                println(e)
+            if (storage.register(user.username, user.password, user.name)) {
+                call.respond(HttpStatusCode.OK)
+            } else {
+                call.respond(HttpStatusCode.Forbidden, "User with the same username already exists")
             }
         }
 
