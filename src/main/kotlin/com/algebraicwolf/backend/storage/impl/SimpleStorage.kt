@@ -2,6 +2,7 @@ package com.algebraicwolf.backend.storage.impl
 
 import com.algebraicwolf.backend.model.Publication
 import com.algebraicwolf.backend.storage.PublicationStorage
+import kotlinx.datetime.Clock
 import java.time.Instant
 
 class SimpleStorage : PublicationStorage {
@@ -30,7 +31,7 @@ class SimpleStorage : PublicationStorage {
             return null
         }
 
-        val time = Instant.now()
+        val time = Clock.System.now()
         val newPub = Publication(nextId, pubText, time, time, author)
         publications[nextId] = newPub
         nextId += 1
@@ -42,7 +43,7 @@ class SimpleStorage : PublicationStorage {
         val pub = publications[id]
 
         return if (pub != null) {
-            publications[id] = pub.copy(text = newText, modifiedAt = Instant.now())
+            publications[id] = pub.copy(text = newText, modifiedAt = Clock.System.now())
             true
         } else {
             false

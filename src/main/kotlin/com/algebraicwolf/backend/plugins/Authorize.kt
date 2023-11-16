@@ -1,6 +1,6 @@
 package com.algebraicwolf.backend.plugins
 
-import com.algebraicwolf.backend.api.getPathParameter
+import com.algebraicwolf.backend.extensions.getPathParameter
 import com.algebraicwolf.backend.storage.PublicationStorage
 import io.ktor.http.*
 import io.ktor.server.application.*
